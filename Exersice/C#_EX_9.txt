@@ -1,0 +1,132 @@
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace ConsoleApp15
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Printinterface UI = new Printinterface();
+             UI.PrintUI();
+
+        }
+    }
+    class GetNewUser : dictionaryDB
+    {
+        public void addNewUser()
+        {
+            Console.WriteLine("_______________________");
+            Console.Write("Enter new user username:");
+            string username = Console.ReadLine();
+            Console.WriteLine("Enter new user Password:");
+            string strpassword = Console.ReadLine();
+            Console.WriteLine("_______________________");
+
+            byte[] bytes = Encoding.ASCII.GetBytes(strpassword);
+            byte[] hashed = SHA1.Create().ComputeHash(bytes);
+            string password = Convert.ToBase64String(hashed);
+
+            users.Add(username, password);
+
+        }
+    }
+    class Printinterface
+    {
+        public void PrintUI()
+        {
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("PASSWORD Authentication System");
+            Console.WriteLine("PLease select one option");
+            Console.WriteLine();
+            Console.WriteLine("1.Establish an account");
+            Console.WriteLine("2.Authenticate a user");
+            Console.WriteLine("3.Print Users");
+            Console.WriteLine("0.Exit System");
+            Console.WriteLine();
+            Console.Write("Enter selection:");
+            string struserResponse = Console.ReadLine();
+            int userResponse = int.Parse(struserResponse);
+            Urespoonse logic = new Urespoonse();
+            logic.response(userResponse);
+        }
+    }
+    class Urespoonse: Printinterface
+    {
+        public void response(int userResponse)
+        {
+            while (userResponse != 0)
+            {
+                if (userResponse == 1)
+                {
+                    GetNewUser ur = new GetNewUser();
+                    ur.addNewUser();
+                    PrintUI();
+                }
+                else if (userResponse == 2)
+                {
+                    getuser get = new getuser();
+                    get.getusers();
+                    PrintUI();
+                }
+                else if (userResponse == 3)
+                {
+
+                    PrintUsers print = new PrintUsers();
+                    print.printUsers();
+                    PrintUI();
+                }
+                else
+                {
+                    Console.WriteLine("dont understand");
+                }
+                System.Environment.Exit(0);
+            }
+
+        }
+    }
+    class dictionaryDB
+    {
+        public static Dictionary<string, string> users = new Dictionary<string, string>();
+    }
+
+    class PrintUsers: dictionaryDB
+    {
+        public void printUsers()
+        {
+            Console.WriteLine($" NAME , PASSWORD");
+            foreach (var pair in users)
+            {
+                Console.WriteLine($"{pair.Key} , {pair.Value}");
+            }
+           
+        }
+    }
+
+class getuser: dictionaryDB
+    {
+        public void getusers()
+        {
+            Console.WriteLine("Enter username to get");
+            string valuser = Console.ReadLine();
+            Console.WriteLine("Enter password to val");
+            string valpass = Console.ReadLine();
+
+            byte[] bytes = Encoding.ASCII.GetBytes(valpass);
+            byte[] hashed = SHA1.Create().ComputeHash(bytes);
+            string password = Convert.ToBase64String(hashed);
+            foreach (var pair in users)
+            {
+                if (users.ContainsKey(valuser) && users.ContainsValue(password))
+                {
+                    Console.WriteLine($"****User Authenticated****");
+                }
+                else
+                    Console.WriteLine($"****Invalid Username/Password****");
+            }
+        }
+    }
+
+}
