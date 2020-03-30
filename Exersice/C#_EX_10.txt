@@ -1,0 +1,165 @@
+using System;
+
+namespace MathCon
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            while (true)
+            {
+                Console.Write("Enter Q to exit, N to continue: [N] ");
+                string exit = Console.ReadLine();
+                if (exit == "Q" || exit == "q")
+                    Environment.Exit(0);
+
+                Console.Write("Please enter the integer to convert: ");
+                string n1 = Console.ReadLine();
+                int number = int.Parse(n1);
+
+                Console.Write("Please enter the base to convert from [2 | 8 | 10]: ");
+                string n2 = Console.ReadLine();
+                int from = int.Parse(n2);
+
+                Console.WriteLine($"Number: {number}, base:{from}");
+
+                if (from == 10)
+                {
+                   Util.DECtoBIN(number);
+                   Util.DECtoOCT(number);
+                }
+                else if (from == 2)
+                {
+                    Util.BINtoDEC(number);
+                    Util.BINtoOCT(number);
+                }
+                else if (from == 8)
+                {
+                    
+                    Util.OCTtoBIN(number);
+                    
+                    Util.OCTtoDec(number);
+                }
+                else
+                    Console.WriteLine("Error in base to convert from");
+            }
+        }
+
+        class Util
+        {
+            public static void DECtoBIN(int number)
+            {
+                int innumber = number;
+                int[] array = new int[9];
+
+                for (int i = 0; innumber > 0; i++)
+                {
+                    array[i] = innumber % 2;
+                    innumber /= 2;
+                }
+                Array.Reverse(array);
+                Console.Write($"binary conversion is:");
+                foreach (var item in array)
+                {
+                    Console.Write(item);
+                }
+                Console.WriteLine();
+            }
+            public static void DECtoOCT(int number)
+            {
+                int innumber = number;
+                int[] array = new int[3];
+
+
+                for (int i = 0; innumber > 0; i++)
+                {
+
+                    array[i] = innumber % 8;
+                    innumber /= 8;
+                }
+                Array.Reverse(array);
+                Console.Write($"octal conversion is:");
+                foreach (var item in array)
+                {
+                    Console.Write(item);
+                }
+                Console.WriteLine();
+
+            }
+
+            public static void BINtoOCT(int number)
+            {
+                int math1 = number;
+                int mathA = math1 / 1000000;
+                int moda = mathA % 8;
+
+                int math2 = math1 - (mathA * 1000000);
+                int mathb = math2 / 1000;
+                int modb = mathb % 8;
+
+                int math3 = math2 - (mathb * 1000);
+                int modc = math3 % 8;
+                
+                Console.WriteLine($"decimal conversion is { moda }{ modb}{ modc}");
+            }
+            public static void BINtoDEC(int number)
+            {
+
+                int read = number;
+                double power = 0;
+                double add = 0;
+
+
+                for (int i = 0; read > 0; i++)
+                {
+                    int number2 = read % 2;
+                    if (number2 == 1)
+                    {
+                        power = Math.Pow(2, i);
+                        add = add + power;
+                        read = read / 10;
+                    }
+                    else if (number2 == 0)
+                    {
+                        read = read / 10;
+                    }
+
+                }
+                Console.WriteLine($"decimal conversion is {add}");
+
+            }
+
+            public static void OCTtoBIN(int number)
+            {
+                int innumber = number;
+                int bin = OCTtoDec(innumber);
+                DECtoBIN(bin);
+
+            }
+            public static int OCTtoDec(int number)
+            {
+                double add = 0;
+
+                int power = number / 100;
+                add = Math.Pow(8, 2) * power;
+
+                int newinnumber = number / 100 * 100;
+                int powerbb = number - newinnumber;
+                int powerb = powerbb / 10;
+                add += Math.Pow(8, 1) * powerb;
+
+                number %= 10;
+                add += (Math.Pow(8, 0) * number);
+
+                int intadd = Convert.ToInt32(add);
+
+                Console.WriteLine($"decimal conversion is: {intadd}");
+                return intadd;
+
+            }
+
+        }
+
+    }
+}

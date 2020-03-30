@@ -1,0 +1,55 @@
+# **Turn in:** **C#_HomeWork_CH_20**
+### **Name:** *Anthony Bartholomaus*
+### Professor: *Mr. Carter*
+
+1. ####	1.	What is a delegate? Explain delegates in terms of pointers and reference types.
+- *A delegate is a reference to a method.Delegates are so named because they “delegate” processing to the referenced method when they are invoked.A delegate is an object that refers to a method.*
+---
+2. ####	2.	How do you declare a delegate? Include a discussion of types, return values, names, and parameters.
+- *delegate void Del(string str);.
+public void ShutDown()
+{
+this.stopMachinery();
+
+}*
+
+---
+3. #### 3.	How do you create instances of delegates and assign values to the instance? What are the values?
+- *this.stopMachinery = new stopMachineryDelegate(folder.StopFolding);.*
+---
+4. #### 4.	How do you invoke a method that has been added to a delegate?
+- *public void ShutDown()
+{
+this.stopMachinery();
+
+}*.*
+---
+5. ####	5.	What is an event ? Why do we have events?
+- *to defi ne and trap signifi cant actions and arrange for a delegate to be called to handle the situation.*
+---
+6. ####	6.	How do you declare events?
+- *event delegateTypeName eventName.*
+---
+7. ####	7.	How do delegates recognize event subscriptions? How do you unsubscribe an event from a delegate?
+- *by using this += operator..*
+---
+8. ####	8.	How do you raise an event? How do you declare code that raises an event?
+- *You can raise an event by calling it like a method. When you raise an event, all the attached delegates
+are called in sequence. For example, here’s the TemperatureMonitor class with a private Notify method that raises the MachineOverheating event: class TemperatureMonitor.
+class MyClass
+{
+public event myDelegate MyEvent;
+...
+private void RaiseEvent()
+{
+if (this.MyEvent != null)
+{
+this.MyEvent();
+}
+}
+...
+}*
+---
+9. ####	9.	Explain with specificity what happens when an event fires and that event has been attached to a delegate.
+- *When you raise an event, all the attached delegates are called in sequence.*
+---

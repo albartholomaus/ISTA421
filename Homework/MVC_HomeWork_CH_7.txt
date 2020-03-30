@@ -1,0 +1,40 @@
+# **Turn in:** **MVC_HomeWork_CH_7**
+### **Name:** *Anthony Bartholomaus*
+### Professor: *Mr. Carter*
+
+1. ####	There are many kinds of tests, including Unit Tests. What is a unit test, and what does it enable you to do?
+- *individual components are isolated from the rest of the application so their behavior can be thoroughly
+validated.*
+---
+2. ####	What is the primary benefit of using unit tests?
+- *easily perform unit testing is one of the benefits of using ASP.NET.*
+---
+3. #### What is the purpose of using method GetHashCode() when using Assert.Equal()?
+- *Each Assert method allows different types of comparison to be made and throws an exception if the result
+is not what was expected.*
+---
+4. #### The book states: “[T]he chain of dependencies can make it difficult to understand what causes a test to fail.” Why is this statement true?
+- *unit test can act on a whole chain of complex components, any of which could be causing the problem.*
+---
+5. ####	How do unit tests isolate small parts of an application?
+- *target small parts of an application.*
+---
+6. ####	According to the book, what is the key to isolating components?
+- *C# interfaces.*
+---
+7. ####	Briefly discuss the nature and purpose of a fake implementation of a class. What does a fake implementation do that a real implementation cannot do?
+- *uses tests prove points and the narrow down areas of isue.*
+---
+8. ####	What is test driven development ? What is the development cycle for test driven development? This is not in the book.
+- *write the tests for a feature before implementing the feature itself.Red,Green,Refactoring*
+---
+9. ####	What are parameterized tests and why would we want to use them?
+- *the data used in a test is removed from the test so that a single method can be used for multiple tests.*
+---
+10. ####	What is a mocking framework? What is the difference between a fake object and a mock object?
+- *mocking framework makes it easier to create fake components to
+isolate parts of the application for unit testing..*
+---
+11. #### (Optional) Can you think of one very important drawback to writing unit tests?
+- *time consumming might test might not fix the issue or id it at all.*
+---
